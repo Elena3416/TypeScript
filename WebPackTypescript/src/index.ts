@@ -13,6 +13,12 @@ import "./../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 // import "./TemasBase/SpreadOperation";
 
-// import "./BaseProgramacionAsincrona/CallBack"
+// import "./BaseProgramacionAsincrona/CallBack";
 
 import "./BaseProgramacionAsincrona/CallbacksReforzamiento";
+
+// import "./BaseProgramacionAsincrona/Demostracion";
+
+// import "./BaseProgramacionAsincrona/Promises";
+
+import "./BaseProgramacionAsincrona/ReforzamientoPromises";

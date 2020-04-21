@@ -58,134 +58,109 @@ Tercer ejercicio
 Uso intermedio Callbacks
 *************************************************/
 //Se crea un arreglo con objeto de 5 personas y sus propiedades, 
-let Personas: Array<persona> = [
-    {
-        id:1,
-        nombre:"Jose Carlos",
-        edad:23,
-        sexo:"M"
-    },
-    {
-        id:2,
-        nombre:"Manuel Alejandro",
-        edad:26,
-        sexo:"M"
-    },
-    {
-        id:3,
-        nombre:"Daniela Estrada",
-        edad:26,
-        sexo:"F"
-    },
-    {
-        id:4,
-        nombre:"Laura Rubalcava",
-        edad:25,
-        sexo:"F"
-    },
-    {
-        id:5,
-        nombre:"Maria Fernanda",
-        edad:22,
-        sexo:"F"
-    },
-];
 
-//llamando al boton ejecutar
-// const button = document.querySelector('#BtnEjecutar');
-// button?.addEventListener('click', EliminarUsuarios);
 
-let Salario : Array<any> = [
-{
-    id:1,
-    salario:5000,
-},
-{
-    id:2,
-    salario:10000,
-},
-{
-    id:3,
-    salario:2000,
-},
-{
-    id:4,
-    salario:4000,
-}
+// function EliminarUsuarios(Nombre:string, callback:Function){
+//     let longitudInicial =  Personas.length;
 
-]
+//     Personas =  Personas.filter((persona) => persona.nombre.toLowerCase() != Nombre);
 
-function EliminarUsuarios(Nombre:string, callback:Function){
-    let longitudInicial =  Personas.length;
+//     if(longitudInicial == Personas.length){
+//         callback(true, Nombre);
+//     }else{
+//         callback(null,Nombre);
+//     }
+// }
 
-    Personas =  Personas.filter((persona) => persona.nombre.toLowerCase() != Nombre);
+// //Imprimir los objetos en una tabla
+// function MostrarUsuarioTabla(err:string|null,respuesta:boolean){
 
-    if(longitudInicial == Personas.length){
-        callback(true, Nombre);
-    }else{
-        callback(null,Nombre);
-    }
-}
+//     if(err){
+//         console.error(`El usuario con nombre ${respuesta} no existe en la Base de Datos`);
+//         return;
+//     }
+//     const tbody = document.querySelector('#tbody');
+//     Personas.forEach((persona)=>{
+//         const tr = document.createElement('tr');
+//         tr.innerHTML = `
+//             <td>${persona.id}</td>
+//             <td>${persona.nombre}</td>
+//             <td>${persona.edad}</td>
+//             <td>${persona.sexo}</td>
+//         ` ;
+//         tbody?.appendChild(tr);
+//     });
+// }
 
-//Imprimir los objetos en una tabla
-function MostrarUsuarioTabla(err:string|null,respuesta:boolean){
+// EliminarUsuarios('Jose Carlos', MostrarUsuarioTabla);
 
-    if(err){
-        console.error(`El usuario con nombre ${respuesta} no existe en la Base de Datos`);
-        return;
-    }
-    const tbody = document.querySelector('#tbody');
-    Personas.forEach((persona)=>{
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-            <td>${persona.id}</td>
-            <td>${persona.nombre}</td>
-            <td>${persona.edad}</td>
-            <td>${persona.sexo}</td>
-        ` ;
-        tbody?.appendChild(tr);
-    });
-}
-
-EliminarUsuarios('Jose Carlos', MostrarUsuarioTabla);
-
-// Busca la informacion del empleado en la BD
-let getEmpleado = (id:number, callback:Function) => {
+// // Busca la informacion del empleado en la BD
+// let getEmpleado = (id:number, callback:Function) => {
     
-    let empleadoDB = Personas.find((empleado) => empleado.id === id);
+//     let empleadoDB = Personas.find((empleado) => empleado.id === id);
     
-    if(!empleadoDB){
-        callback(`No existe un empleado con ID ${id}`)
-    }else {
-        callback(null, empleadoDB);
-    }
-};
-let getSalario = (empleado:persona, callback:Function) =>{
+//     if(!empleadoDB){
+//         callback(`No existe un empleado con ID ${id}`)
+//     }else {
+//         callback(null, empleadoDB);
+//     }
+// };
+// let getSalario = (empleado:persona, callback:Function) =>{
 
-    let SalarioDB = Salario.find((salario) => salario.id === empleado.id);
-    console.log(SalarioDB);
+//     let SalarioDB = Salario.find((salario) => salario.id === empleado.id);
+//     console.log(SalarioDB);
 
-    if(!SalarioDB){
-        callback(`No se encontro un salario para usuario ${empleado.nombre}`);
-    }else{
-        callback(null, {
-            nombre: empleado.nombre,
-            salario:SalarioDB.salario,
-        });
-    }
-};
+//     if(!SalarioDB){
+//         callback(`No se encontro un salario para usuario ${empleado.nombre}`);
+//     }else{
+//         callback(null, {
+//             nombre: empleado.nombre,
+//             salario:SalarioDB.salario,
+//         });
+//     }
+// };
 
 //Invocacion de funciones
-getEmpleado(4,(err:null|string,empleado:persona) => {
-    if(err){
-        return console.error(err);
-    }
-    getSalario(empleado, (err:null|string, res:any) =>{
+// getEmpleado(4,(err:null|string,empleado:persona) => {
+//     if(err){
+//         return console.error(err);
+//     }
+//     getSalario(empleado, (err:null|string, res:any) =>{
 
-        if(err){
-            console.error(err);
-            return;  
-        }
-        console.info(`El salario de ${res.nombre} es ${res.salario}`);
-    });
-});    
+//         if(err){
+//             console.error(err);
+//             return;  
+//         }
+//         console.info(`El salario de ${res.nombre} es ${res.salario}`);
+//     });
+// });    
+
+
+/*************************************************
+CallBack ASINCRONO
+Timeout, para definir el tiempo de ejecucion de una funcion
+*************************************************/
+
+// function Segundafunction(){
+//     console.log("Se ejecuta segunda Funcion");  
+// }
+
+// function getEmpleadoAsincrono(id:number, callback:Function){
+
+//     setTimeout(() => {      
+//         const Empleado = Personas.find((Personas) => Personas.id === id);
+    
+//         !Empleado?
+//         callback('No existe empleado con tal id'):
+//         callback(null, Empleado);
+//     }, 2000);    
+// }
+
+// getEmpleadoAsincrono(4,(error:string|null, empleado:persona) => {
+//     if(error){
+//         return console.log(error);
+//     }
+//     console.log(empleado);
+// });
+
+// Segundafunction();

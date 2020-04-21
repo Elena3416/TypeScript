@@ -56,7 +56,7 @@ const carrera : Array<Carrera> = [
 const centroestudios: Array<CentroEstudios> = [
     {   
         id:1,
-        Nombre: "Ciencia y tecnologias"
+        Nombre: "Ciencias y tecnologias"
     },
     {
         id:2,
@@ -69,7 +69,6 @@ Nombre de la carrera en la cual estudia el alumno con el id 2
 *************************************************/
 //Buscar el id Alumno
 let getidAlumno = (id:number, callback:Function) => {
-
     let idAlumnoBD = alumno.find((alumno) => alumno.id === id);
 
     !idAlumnoBD?
@@ -79,13 +78,13 @@ let getidAlumno = (id:number, callback:Function) => {
     console.log(idAlumnoBD);
 };
 
-//Buscar el nombre de la carrera
+// Buscar el nombre de la carrera
 let getNombreCarrera = (alumno:Alumnos, callback:Function) => {
-
     let NombreCarreraBD = carrera.find((carrera) => carrera.idCarrera === alumno.idCarrera);
   
     !NombreCarreraBD?
-    callback(`No existe la carrera con este id del alumno ${alumno.Nombre} en la base de datos`):
+    callback(`No existe la carrera con este nombre del alumno ${alumno.Nombre} 
+    en la base de datos`):
     callback(null, {
         id:alumno.idCarrera,
         carrera: NombreCarreraBD.Carrera,
@@ -95,30 +94,25 @@ let getNombreCarrera = (alumno:Alumnos, callback:Function) => {
 
 // Callback para imprimir la busqueda
 getidAlumno(2, (err:null|string, alumno:Alumnos)=>{
-
     if(err){
         console.error(err);
         return;  
     }
-
 getNombreCarrera(alumno, (err:null|string, respuesta:any) => {
-
     if(err){
         console.error(err);
         return;  
     }
     console.info(`La carrera de ${respuesta.carrera} es la que esta estudiando el 
-    alumno con el id: ${respuesta.id}`);
-    
+    alumno con el id: ${respuesta.id}`);  
 });  
 });
 
-/*************************************************
-Nombre del centro a la cual pertenece la carrera de nutricion
-*************************************************/
-//Buscar el id de nutricion
+// /*************************************************
+// Nombre del centro a la cual pertenece la carrera de nutricion
+// *************************************************/
+// //Buscar el id de nutricion
 let getidNutricion = (id:number, callback:Function) => {
-
     let CarreraNutricionBD = carrera.find((carrera) => carrera.idCarrera === id);
     
     !CarreraNutricionBD?
@@ -126,10 +120,9 @@ let getidNutricion = (id:number, callback:Function) => {
     callback(null, CarreraNutricionBD);
 
     console.log(CarreraNutricionBD);
-}
+};
 //Buscar el id del centro de estudio
 let getCentroEstudios = (carrera:Carrera, Callback:Function) => {
-
     let CentrodeEstudiosBD = centroestudios.find((centroestudios) => centroestudios.id === carrera.idCentroEstudios);
     
     !CentrodeEstudiosBD?
@@ -141,54 +134,59 @@ let getCentroEstudios = (carrera:Carrera, Callback:Function) => {
         centroestudios:CentrodeEstudiosBD.Nombre, 
     });
     console.log(CentrodeEstudiosBD);
-} 
+};
 
 getidNutricion(3, (err:null|string, carrera:Carrera) => {
-
     if(err){
         return console.error(err);
     }
-
 getCentroEstudios(carrera, (err:null|string, respuesta2:any) => {
-
     if(err){
         console.error(err);
         return;  
     }
     console.info(`La carrera de ${respuesta2.nombre} con el id ${respuesta2.id}
-    pertence al centro de ${respuesta2.centroestudios}`);
-    
+    pertence al centro de ${respuesta2.centroestudios}`); 
 });
 });
 
 /*************************************************
 Nombre del centro al cual pertenece la carrera del alumno Victor Lemus
 *************************************************/
-//Buscar el nombre del alumno con el id
+// Buscar el nombre del alumno con el id
 let getNombreAlumno = (id:number, callback:Function) => {
-
-    let NombreAlumnoBD = alumno.find((alumno) => alumno.id === id ); 
+    let NombreAlumnoBD = alumno.find((alumno) => alumno.id === id); 
 
     !NombreAlumnoBD?
     callback(`No existe el nombre del alumno con este ID ${id} en la base de datos`):
     callback(null, NombreAlumnoBD);
 
     console.log(NombreAlumnoBD);
-}
+};
+//Buscar el nombre de la carrera
+let getCarrera = (alumno:Alumnos, callback:Function) => {
+    let CarreraBD = carrera.find((carrera) => carrera.idCarrera === alumno.idCarrera);
 
-let getCentrodeEstudios = (alummo:Alumnos, callback:Function) =>{
+    !CarreraBD?
+    callback(`No existe la carrera con este nombre del alumno ${alumno.Nombre}`):
+    callback(null, CarreraBD);
 
-    let NombreCentroEstudioBD = centroestudios.find((centroestudios) => centroestudios.id === alummo.idCarrera);
-    console.log(NombreCentroEstudioBD);
+    console.log(CarreraBD);  
+};
 
+// Buscar el nombre del centro de estudios
+let getCentrodeEstudios = (carrera:Carrera, callback:Function) =>{
+    let NombreCentroEstudioBD = centroestudios.find((centroestudios) => centroestudios.id 
+    === carrera.idCentroEstudios);
+    
     if(!NombreCentroEstudioBD){
-        callback(`No se encontro la carrera para este alummo ${alummo.Nombre}`);
+        callback(`No se encontro la carrera con este ID ${carrera.Carrera}`);
     }else{
         callback(null, {
-            id:alummo.idCarrera,
-            nombre:alummo.Nombre,
+            nombre:carrera.Carrera,
             centroestudios:NombreCentroEstudioBD.Nombre,
         });
+        console.log(NombreCentroEstudioBD);
     }
 };
 
@@ -198,13 +196,19 @@ getNombreAlumno(4, (err:string|null, alumno:Alumnos) => {
         return;  
     }
 
-    getCentrodeEstudios(alumno, (err:null|string, respuesta3:any) =>{
+    getCarrera(alumno, (err:string|null, carrera:Carrera) => {
+        if(err){
+            console.error(err);
+        }
+
+    getCentrodeEstudios(carrera, (err:null|string, respuesta3:any) =>{
         if(err){
             console.error(err);
             return;  
         }
-        console.info(`El nombre del centro de ${respuesta3.centroestudios} con el id ${respuesta3.id} 
-        pertenece a la carrera del alumno ${respuesta3.nombre}`);
+        console.info(`El centro de ${respuesta3.centroestudios} con el nombre de la 
+        carrera ${respuesta3.nombre} del alumno ${alumno.Nombre}`);
+        });
     });
 });
 
