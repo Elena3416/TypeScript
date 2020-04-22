@@ -1,6 +1,4 @@
-import { Alumnos } from "./Interfaces";
-import { Carrera } from "./Interfaces";
-import { CentroEstudios } from "./Interfaces";
+import { Alumnos, Carrera, CentroEstudios } from "./Interfaces";
 
 const alumno: Array<Alumnos> = [
     {

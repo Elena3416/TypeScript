@@ -1,6 +1,4 @@
-import {Alumnos} from "./../BaseProgramacionAsincrona/Interfaces";
-import {Carrera} from "./../BaseProgramacionAsincrona/Interfaces";
-import {CentroEstudios} from "./../BaseProgramacionAsincrona/Interfaces";
+import {Alumnos, Carrera, CentroEstudios} from "./../BaseProgramacionAsincrona/Interfaces";
 
 const alumno: Array<Alumnos> = [
     {

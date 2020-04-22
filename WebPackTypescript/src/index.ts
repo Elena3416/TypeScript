@@ -15,10 +15,14 @@ import "./../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 // import "./BaseProgramacionAsincrona/CallBack";
 
-import "./BaseProgramacionAsincrona/CallbacksReforzamiento";
+// import "./BaseProgramacionAsincrona/CallbacksReforzamiento";
 
 // import "./BaseProgramacionAsincrona/Demostracion";
 
 // import "./BaseProgramacionAsincrona/Promises";
 
-import "./BaseProgramacionAsincrona/ReforzamientoPromises";
+// import "./BaseProgramacionAsincrona/ReforzamientoPromises";
+
+// import "./BaseProgramacionAsincrona/Async-await";
+
+import "./BaseProgramacionAsincrona/Async-awaitReforzamiento";

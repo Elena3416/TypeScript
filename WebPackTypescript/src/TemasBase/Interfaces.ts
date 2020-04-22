@@ -12,3 +12,8 @@ export interface persona {
     id:number
 };
 //export interface, se le indica que se va a utilizar en otro archivo
+
+export interface Salario{
+    id:number,
+    salario:number,
+}
