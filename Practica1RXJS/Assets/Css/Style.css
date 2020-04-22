@@ -1,0 +1,13 @@
+*, html, body {
+    font-family: sans-serif;
+    color: #fff;
+}
+
+body{
+    text-align: center;
+    background: #1f3144;
+}
+
+h1{
+    font-weight: lighter;
+}
