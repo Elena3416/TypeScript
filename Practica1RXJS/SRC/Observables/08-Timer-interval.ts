@@ -12,8 +12,8 @@ incrementar10seg.setSeconds(incrementar10seg.getSeconds()+10);
 
 //Si no le agrega ningun tiempo al timer, manda un dato y lo completa
 const src$ = timer(incrementar10seg);
-// const src$ = interval(1000);
-// const src$ = timer(3000, 1000); 
+// const src1$ = interval(1000);
+// const src2$ = timer(3000, 1000); 
 
 displaylog("Inicio");
 src$.subscribe(observer);

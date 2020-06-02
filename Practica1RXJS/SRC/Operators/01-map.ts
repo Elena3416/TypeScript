@@ -17,3 +17,5 @@ const keyup$ = fromEvent<KeyboardEvent> (document, 'keyup');
 
 keyup$.pipe(map<KeyboardEvent, string>((event) => event.code))
 .subscribe(observer);
+
+//map pasa una funcion al stream de datos
